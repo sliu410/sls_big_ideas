@@ -57,6 +57,7 @@
         .labelbody {
             background: transparent;
             margin:1px;
+            height:24px;
         }
 
         .label {
@@ -104,10 +105,12 @@
     var xscale = d3.scale.linear().range([0, chartWidth]);
     var yscale = d3.scale.linear().range([0, chartHeight]);
      var color = d3.scale.ordinal()
-                  .domain(["SERVE", "LEARN","CONCEPTS","METHODS", "SUSTAIN"])
-                  .range(["#38976D", "#EF6C00" , "#EF6C00","#EF6C00", "#00244b"]);
+                  .domain(["SERVE", "LEARN", "SUSTAIN"])
+                  .range(["#38976D", "#EF6C00" , "#00244b"]);
     var headerHeight = 24;
-    var headerColor = "transparent"; 
+    var headerColor = function(d){
+        color(d.name); 
+    }; 
     var transitionDuration = 500;
     var root;
     var node;
@@ -151,6 +154,13 @@
         parentEnterTransition.append("rect")
             .attr("width", function(d) {
                 return Math.max(0.01, d.dx);
+            })
+            .style("display",function(d){
+                if (d.depth === 0){
+                    return "none"; 
+                }else {
+                    return "visible"; 
+                }
             })
             .attr("height", headerHeight)
             .style("fill", headerColor);
@@ -201,6 +211,15 @@
           })
            .classed("hyphenate", true);
 
+
+        d3.selectAll(".labelbody")
+          .style("background-color", function(d){
+                 if (d.labelcolor){
+                    return d.labelcolor;  
+                } else {
+                    return "transparent";  
+                }
+          });
 
         d3.selectAll(".foreignObject")
           .style("background-color", function(d){

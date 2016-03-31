@@ -1,0 +1,191 @@
+{
+  "name": "", 
+  "d.border":"none",
+  "children":[
+    {  
+      "name": "LEARN",
+      "id":"learn",
+      "fontsize":"18px",
+      "labelcolor":"#FFCC80",
+      "level":"#EF6C00",
+      "children":[
+            {"name":"CONCEPTS",
+             "labelcolor":"#FFA726",
+              "margintop":"0",
+              "id":"concepts",
+              "zindex":99,
+              "children": [
+                {"name":"Governance",
+                    "margintop":"20px",
+                    "labelcolor":"#FB8C00",
+                    "children":[
+                        {"name":"Managing the Commons", "url":"managing_the_commons.html"},
+                        {"name":"Participatory Processes & Civic Engagement"},
+                        {"name":"Democratic Process"},
+                        {"name":"Voice & Agency"}
+                    ]
+                },
+                {"name":"Urban Development",
+                "zindex":99,
+                "labelcolor":"#FB8C00",
+                "margintop":"0",
+                    "children":[
+                        {"name":"Sustainable Urban Development"},
+                        {"name":"Smart Cities"}
+                    ]
+                },
+                {"name":"Systems",
+                "margintop":"0",
+                "labelcolor":"#FB8C00",
+                    "children":[
+                        {"name":"Food-Energy-Water Nexus"},
+                        {"name":"Systems Thinking"},
+                        {"name":"Spatiotemporal Relations"},
+                        {"name":"Lifecycle Thinking"},
+                        {"name":"Social & Environmental Determinants of Health","margintop":"15px"},
+                        {"name":"Rebound Effect"},
+                        {"name":"Energy Efficiency"},
+                        {"name":"Infrastructure: Physical, Technological, Social","margintop":"24px"}
+                    ]
+                },
+                {"name":"Equity, Justice & Diversity",
+                "labelcolor":"#FB8C00",
+                "zindex":100,
+                 "margintop":"0",
+                 "dxChange":"-7em", 
+                 "children":[
+                        {"name":"Cultural, Linguistic & Biological Diversity"},
+                        {"name":"Interconnectedness"},
+                        {"name":"Environmental Justice"}
+                    ]
+                },
+                {"name":"Science & Technology",
+                "labelcolor":"#FB8C00",
+                 "margintop":"20px",
+                 "zindex":99,
+                 "children":[
+                    {"name":"Technology for Social Good"},
+                    {"name":"Social, Cultural & Environmental Context"}
+                 ]
+                }                
+              ]
+            },
+
+            {"name":"METHODS",
+            "labelcolor":"#FFA726",
+             "zindex":99,
+             "backgroundcolor":"#FFA726",
+             "margintop":"20px",
+             "children":[
+                    {"name":"Community Research",
+                    "labelcolor":"#FB8C00",
+                    "margintop":"0",
+                     "dxChange":"-4em",
+                     "children":[
+                            {"name":"Participatory Research"},
+                            {"name":"Community Asset Mapping"},
+                            {"name":"Design Thinking"},
+                            {"name":"Problem-based Learning"},
+                            {"name":"Prototyping"}
+                     
+                      ] 
+                    },  
+                    {"name":"Storytelling",
+                    "labelcolor":"#FB8C00",
+                     "margintop":"0",
+                      "children":[
+                        {"name":"Digital Storytelling & Documentary Media"},
+                        {"name":"Information Visualization"}
+                      ]
+                    },
+                    {"name":"Leadership",
+                    "labelcolor":"#FB8C00",
+                    "margintop":"40px",
+                      "children":[
+                        {"name":"Values-based Leadership", "margintop":"48px"},
+                        {"name":"Teamwork & Facilitative Leadership","margintop":"48px"}
+                      ]
+                    },            
+                    {"name":"Experimentation",
+                    "labelcolor":"#FB8C00",
+                    "margintop":"40px",
+                     "dxChange":"2em",
+                     "children":[
+                        {"name":"Scientific Method", "margintop":"60px"}
+                     ]
+                    },
+                    {"name":"Environmental Assessment",
+                    "labelcolor":"#FB8C00",
+                    "zindex":100,
+                    "margintop":"0",
+                     "children":[
+                        {"name":"IPAT Equation","margintop":"60px"},
+                        {"name":"Ecological Footprint","margintop":"60px"}
+                     ]
+                    }
+                ]
+            }
+        ]
+    },
+
+    {
+      "name": "SUSTAIN",
+      "fontsize":"18px",
+      "labelcolor":"#04528C",
+      "margintop":"0",
+      "level":"#00244b",
+      "children":[
+            {"name":"ACTION",
+            "labelcolor":"#133B60",
+            "margintop":"20px",
+             "children":[
+                    {"name":"Collaborative Community Innovations"},
+                    {"name":"Social Entrepreneurship"},
+                    {"name":"Local & Global Collaborative Action"},
+                    {"name":"Results-based Accountability"},
+                    {"name":"GT as Living Lab"},
+                    {"name":"GT as Anchor Institution"}
+                ]
+            },
+            {"name":"ADAPTIVE LEARNING",
+            "labelcolor":"#133B60",
+             "zindex":100,
+             "margintop": "20px",
+                "children":[
+                    {"name":"Broad-based Learning Communities"},
+                    {"name":"Long-term Visioning"},
+                    {"name":"Cognitive Flexibility","margintop":"86px"},
+                    {"name":"Reflection","margintop":"86px"}
+                ]
+            }
+        ]
+    },
+        {
+      "name": "SERVE",
+      "fontsize":"18px",
+      "labelcolor":"#02D36F",
+      "margintop":"0",
+      "level":"#38976D",
+      "children":[
+          {"name":"PARTNERSHIP PRINCIPLES",
+          "labelcolor":"#04AA57",
+          "zindex":100,
+          "margintop":"20px",
+          "dxChange":"8em",
+           "children":[
+            {"name":"Long-term Relationships"},
+            {"name":"Asset-based Engagement"},
+            {"name":"Valuing Community Impact"},
+            {"name":"Shared Value"},
+            {"name":"Doing good in your neighborhood"},
+            {"name":"Reciprocal Teaching & Learning"},
+            {"name":"Honoring Multiple Ways of Knowing"}
+          ]
+        }
+      ]
+    }
+ ]
+}
+
+
+

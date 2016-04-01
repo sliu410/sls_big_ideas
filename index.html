@@ -135,21 +135,21 @@
         node = root = data;
         var nodes = treemap.nodes(root);
 
-        function fontSize(d,i) {
-        var size = d.dx/5;
-        var words = d3.selectAll(".label").text().split(' ');
-        var word = words[0];
-        var width = d.dx;
-        var height = d.dy;
-        var length = 0;
-        d3.select(this).style("font-size", size + "px").text(word);
-        while(((this.getBBox().width >= width) || (this.getBBox().height >= height)) && (size > 12))
-         {
-          size--;
-          d3.select(this).style("font-size", size + "px");
-          this.firstChild.data = word;
-         }
-        }  
+        // function fontSize(d,i) {
+        // var size = d.dx/5;
+        // var words = d3.selectAll(".label").text().split(' ');
+        // var word = words[0];
+        // var width = d.dx;
+        // var height = d.dy;
+        // var length = 0;
+        // d3.select(this).style("font-size", size + "px").text(word);
+        // while(((this.getBBox().width >= width) || (this.getBBox().height >= height)) && (size > 12))
+        //  {
+        //   size--;
+        //   d3.select(this).style("font-size", size + "px");
+        //   this.firstChild.data = word;
+        //  }
+        // }  
 
         var children = nodes.filter(function(d) {
             return !d.children;
@@ -248,8 +248,8 @@
                 }
           });
 
-        d3.selectAll(".label")
-          .call(fontSize); 
+        // d3.selectAll(".label")
+        //   .call(fontSize); 
 
         // remove transition
         parentCells.exit()

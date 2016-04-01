@@ -137,7 +137,7 @@
 
         function fontSize(d,i) {
         var size = d.dx/5;
-        var words = d3.selectAll(".label").split(' ');
+        var words = d3.selectAll(".label").text().split(' ');
         var word = words[0];
         var width = d.dx;
         var height = d.dy;

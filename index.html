@@ -117,6 +117,22 @@
     var root;
     var node;
 
+    function fontSize(d,i) {
+    var size = d.dx/5;
+    var words = d.data.key.split(' ');
+    var word = words[0];
+    var width = d.dx;
+    var height = d.dy;
+    var length = 0;
+    d3.select(this).style("font-size", size + "px").text(word);
+    while(((this.getBBox().width >= width) || (this.getBBox().height >= height)) && (size > 12))
+     {
+      size--;
+      d3.select(this).style("font-size", size + "px");
+      this.firstChild.data = word;
+     }
+    }    
+
     var treemap = d3.layout.treemap()
         .round(false)
         .size([chartWidth, chartHeight])
@@ -232,6 +248,9 @@
                 }
           });
 
+        d3.selectAll(".child .label")
+          .call(fontSize); 
+
         // remove transition
         parentCells.exit()
             .remove();
@@ -268,6 +287,8 @@
             .text(function(d) {
                 return d.name;
             });
+
+
 
         if (supportsForeignObject) {
             childEnterTransition.selectAll(".foreignObject")

@@ -38,7 +38,7 @@
                 "margintop":"0",
                 "labelcolor":"#FB8C00",
                     "children":[
-                        {"name":"Food-Energy-Water Nexus"},
+                        {"name":"Food-Energy-    Water Nexus"},
                         {"name":"Systems Thinking"},
                         {"name":"Spatiotemporal Relations"},
                         {"name":"Lifecycle Thinking"},
@@ -152,7 +152,7 @@
              "zindex":100,
              "margintop": "20px",
                 "children":[
-                    {"name":"Broad-based Learning Communities"},
+                    {"name":"Broad-    based Learning Communities"},
                     {"name":"Long-term Visioning"},
                     {"name":"Cognitive Flexibility","margintop":"86px"},
                     {"name":"Reflection","margintop":"86px"}

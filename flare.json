@@ -152,7 +152,7 @@
              "zindex":100,
              "margintop": "20px",
                 "children":[
-                    {"name":"Broad-    based Learning Communities"},
+                    {"name":"Broad-based Learning Communities"},
                     {"name":"Long-term Visioning"},
                     {"name":"Cognitive Flexibility","margintop":"86px"},
                     {"name":"Reflection","margintop":"86px"}

@@ -12,19 +12,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <style type="text/css">
         body {
-            overflow: scroll;
+            overflow: hidden;
             font-size: 12px;
             font-family: "Helvetica Neue", Helvetica;
-            width:100%;
-            height:100%;
-
         }
-
-        .field-item {
-  width:70%;
-  height:70%;
-  border: 1px dotted silver;
-}
 
         .footer {
             z-index: 1;
@@ -110,19 +101,6 @@
 </body>
 
 <script type="text/javascript">
-
-function ZoomableTreeMap() {
-    var $container = $('.field-item'),
-                w = $container.width(),
-                //h = window.innerHeight - document.getElementById("chart-tabs").offsetTop + document.getElementById("chart-tabs").offsetHeight,
-                h=$container.height(),
-                x = d3.scale.linear().range([0, w]),
-                y = d3.scale.linear().range([0, h]),
-                //color = d3.scale.category20b(),
-                root,
-                node;
-var opacity = 1;
-
     var supportsForeignObject = Modernizr.svgforeignobject;
     var margin = {top: 40, right: 10, bottom: 10, left: 10},
     chartWidth = 1200 - margin.left - margin.right,
@@ -144,6 +122,7 @@ var opacity = 1;
         .round(false)
         .size([chartWidth, chartHeight])
         .sticky(true)
+        .mode("slice")
         .value(function(d) {
             return 20;
         });
@@ -470,14 +449,6 @@ var opacity = 1;
             d3.event.stopPropagation();
         }
     }
-   }
-ZoomableTreeMap();
-
-$(window).resize(function () {
-            var div = document.getElementById("my-svg-div");
-            div.parentNode.removeChild(div);
-            ZoomableTreeMap();
-});
 
     $('div.label').hyphenate('en-us');
 </script>

@@ -136,7 +136,7 @@
       "level":"#3FB0E5",
       "children":[
             {"name":"ACTION",
-            "labelcolor":"#0B48A0",
+            "labelcolor":"#4382C3",
             "margintop":"20px",
              "children":[
                     {"name":"Collaborative Community Innovations"},
@@ -148,7 +148,7 @@
                 ]
             },
             {"name":"ADAPTIVE LEARNING",
-            "labelcolor":"#0B48A0",
+            "labelcolor":"#4382C3",
              "zindex":100,
              "margintop": "20px",
                 "children":[
@@ -163,12 +163,12 @@
         {
       "name": "SERVE",
       "fontsize":"18px",
-      "labelcolor":"#38976D",
+      "labelcolor":"#37976D",
       "margintop":"0",
       "level":"#02D36F",
       "children":[
           {"name":"PARTNERSHIP PRINCIPLES",
-          "labelcolor":"#04AA57",
+          "labelcolor":"#04B257",
           "zindex":100,
           "margintop":"20px",
           "dxChange":"8em",

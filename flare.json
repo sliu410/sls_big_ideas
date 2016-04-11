@@ -6,18 +6,18 @@
       "name": "LEARN",
       "id":"learn",
       "fontsize":"18px",
-      "labelcolor":"#FFCC80",
-      "level":"#EF6C00",
+      "labelcolor":"#EF6C00",
+      "level":"#FFCC80",
       "children":[
             {"name":"CONCEPTS",
-             "labelcolor":"#FFA726",
+             "labelcolor":"#FB8C00",
               "margintop":"0",
               "id":"concepts",
               "zindex":99,
               "children": [
                 {"name":"Governance",
                     "margintop":"20px",
-                    "labelcolor":"#FB8C00",
+                    "labelcolor":"#FFA726",
                     "children":[
                         {"name":"Managing the Commons", "url":"managing_the_commons.html"},
                         {"name":"Participatory Processes & Civic Engagement"},
@@ -27,7 +27,7 @@
                 },
                 {"name":"Urban Development",
                 "zindex":99,
-                "labelcolor":"#FB8C00",
+                "labelcolor":"#FFA726",
                 "margintop":"0",
                     "children":[
                         {"name":"Sustainable Urban Development"},
@@ -36,7 +36,7 @@
                 },
                 {"name":"Systems",
                 "margintop":"0",
-                "labelcolor":"#FB8C00",
+                "labelcolor":"#FFA726",
                     "children":[
                         {"name":"Food-Energy-    Water Nexus"},
                         {"name":"Systems Thinking"},
@@ -49,7 +49,7 @@
                     ]
                 },
                 {"name":"Equity, Justice & Diversity",
-                "labelcolor":"#FB8C00",
+                "labelcolor":"#FFA726",
                 "zindex":100,
                  "margintop":"0",
                  "dxChange":"-7em", 
@@ -60,7 +60,7 @@
                     ]
                 },
                 {"name":"Science & Technology",
-                "labelcolor":"#FB8C00",
+                "labelcolor":"#FFA726",
                  "margintop":"20px",
                  "zindex":99,
                  "children":[
@@ -72,13 +72,13 @@
             },
 
             {"name":"METHODS",
-            "labelcolor":"#FFA726",
+            "labelcolor":"#FB8C00",
              "zindex":99,
              "backgroundcolor":"#FFA726",
              "margintop":"20px",
              "children":[
                     {"name":"Community Research",
-                    "labelcolor":"#FB8C00",
+                    "labelcolor":"#FFA726",
                     "margintop":"0",
                      "dxChange":"-4em",
                      "children":[
@@ -91,7 +91,7 @@
                       ] 
                     },  
                     {"name":"Storytelling",
-                    "labelcolor":"#FB8C00",
+                    "labelcolor":"#FFA726",
                      "margintop":"0",
                       "children":[
                         {"name":"Digital Storytelling & Documentary Media"},
@@ -99,7 +99,7 @@
                       ]
                     },
                     {"name":"Leadership",
-                    "labelcolor":"#FB8C00",
+                    "labelcolor":"#FFA726",
                     "margintop":"40px",
                       "children":[
                         {"name":"Values-based Leadership", "margintop":"48px"},
@@ -107,7 +107,7 @@
                       ]
                     },            
                     {"name":"Experimentation",
-                    "labelcolor":"#FB8C00",
+                    "labelcolor":"#FFA726",
                     "margintop":"40px",
                      "dxChange":"2em",
                      "children":[
@@ -115,7 +115,7 @@
                      ]
                     },
                     {"name":"Environmental Assessment",
-                    "labelcolor":"#FB8C00",
+                    "labelcolor":"#FFA726",
                     "zindex":100,
                     "margintop":"0",
                      "children":[

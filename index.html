@@ -293,13 +293,9 @@
             .classed("background", true)
             .style("fill", function(d) {
                 return color(d.parent.parent.name);
-            })
-            .on("click", function(d) { 
-            if(!d.children){
-                window.open(d.url); 
-            }
-        });
-        childEnterTransition.append('foreignObject')
+            }); 
+
+        var foreignObject = childEnterTransition.append('foreignObject')
             .attr("class", "foreignObject")
             .attr("width", function(d) {
                 return Math.max(0.01, d.dx);
@@ -313,18 +309,18 @@
             .attr("class", "label")
             .text(function(d) {
                 return d.name;
-            })
-            .text(function(d){
-                return d.people; 
-            })
-            .on("click", function(d) { 
-            if(!d.children){
-                window.open(d.url); 
-            }
-        });
+            }); 
 
-        //append a parallel div as .label and name it as .people. Maket ".text" return d.people. 
-
+        foreignObject.append("div")
+                     .attr("class","people")
+                     .text(function(d){
+                            return "Read stories from:" + " " + d.people;
+                     })
+                     .on("click", function(d) { 
+                        if(!d.children){
+                            window.open(d.url); 
+                        }
+                     });
 
 
         if (supportsForeignObject) {

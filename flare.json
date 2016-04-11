@@ -163,9 +163,9 @@
         {
       "name": "SERVE",
       "fontsize":"18px",
-      "labelcolor":"#02D36F",
+      "labelcolor":"#38976D",
       "margintop":"0",
-      "level":"#38976D",
+      "level":"#02D36F",
       "children":[
           {"name":"PARTNERSHIP PRINCIPLES",
           "labelcolor":"#04AA57",

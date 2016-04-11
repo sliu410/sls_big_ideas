@@ -56,8 +56,8 @@
                  "dxChange":"-7em", 
                  "children":[
                         {"name":"Cultural, Linguistic & Biological Diversity"},
-                        {"name":"Environmental Justice"},
                         {"name":"Equity and Climate"},
+                        {"name":"Environmental Justice"},
                         {"name":"Interconnectedness"}
                     ]
                 },

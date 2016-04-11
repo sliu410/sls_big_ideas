@@ -293,7 +293,12 @@
             .classed("background", true)
             .style("fill", function(d) {
                 return color(d.parent.parent.name);
-            });
+            })
+            .on("click", function(d) { 
+            if(!d.children){
+                window.open(d.url); 
+            }
+        });
         childEnterTransition.append('foreignObject')
             .attr("class", "foreignObject")
             .attr("width", function(d) {
@@ -308,7 +313,12 @@
             .attr("class", "label")
             .text(function(d) {
                 return d.name;
-            });
+            })
+            .on("click", function(d) { 
+            if(!d.children){
+                window.open(d.url); 
+            }
+        });
 
         //append a parallel div as .label and name it as .people. Maket ".text" return d.people. 
 

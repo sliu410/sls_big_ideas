@@ -314,6 +314,9 @@
             .text(function(d) {
                 return d.name;
             })
+            .text(function(d){
+                return d.people; 
+            })
             .on("click", function(d) { 
             if(!d.children){
                 window.open(d.url); 

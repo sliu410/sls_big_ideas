@@ -294,7 +294,7 @@
             .append("div")
             .attr("class", "label")
             .text(function(d) {
-                return d.name + d.people;
+                return d.name;
             });
 
 
@@ -336,7 +336,7 @@
             })
             .select(".labelbody .label")
             .text(function(d) {
-                return d.name + d.people;
+                return d.name;
             });
         // exit transition
         childrenCells.exit()

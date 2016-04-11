@@ -294,7 +294,7 @@
             .append("div")
             .attr("class", "label")
             .text(function(d) {
-                return d.name;
+                return d.name + d.people;
             });
 
 
@@ -336,7 +336,7 @@
             })
             .select(".labelbody .label")
             .text(function(d) {
-                return d.name;
+                return d.name + d.people;
             });
         // exit transition
         childrenCells.exit()
@@ -456,7 +456,7 @@
             })
             .select(".labelbody .label")
             .text(function(d) {
-                return d.name + d.people;
+                return d.name;
             });
 
         // update the width/height of the rects

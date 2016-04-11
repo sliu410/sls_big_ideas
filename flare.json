@@ -136,7 +136,7 @@
       "level":"#3FB0E5",
       "children":[
             {"name":"ACTION",
-            "labelcolor":"#133B60",
+            "labelcolor":"#0B48A0",
             "margintop":"20px",
              "children":[
                     {"name":"Collaborative Community Innovations"},
@@ -148,7 +148,7 @@
                 ]
             },
             {"name":"ADAPTIVE LEARNING",
-            "labelcolor":"#133B60",
+            "labelcolor":"#0B48A0",
              "zindex":100,
              "margintop": "20px",
                 "children":[

@@ -131,9 +131,9 @@
     {
       "name": "SUSTAIN",
       "fontsize":"18px",
-      "labelcolor":"#047DBA",
+      "labelcolor":"#1EB4F7",
       "margintop":"0",
-      "level":"#1EB4F7",
+      "level":"#047DBA",
       "children":[
             {"name":"ACTION",
             "labelcolor":"#133B60",

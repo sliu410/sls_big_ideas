@@ -6,7 +6,7 @@
       "name": "LEARN",
       "id":"learn",
       "fontsize":"18px",
-      "labelcolor":"#EF6C00",
+      "labelcolor":"#FFAA00",
       "level":"#FFCC80",
       "children":[
             {"name":"CONCEPTS",
@@ -133,7 +133,7 @@
       "fontsize":"18px",
       "labelcolor":"#047DBA",
       "margintop":"0",
-      "level":"#00244b",
+      "level":"#1EB4F7",
       "children":[
             {"name":"ACTION",
             "labelcolor":"#133B60",

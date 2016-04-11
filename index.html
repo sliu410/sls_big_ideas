@@ -93,6 +93,8 @@
 </head>
 <body>
 <div id="body"></div>
+<div class="writeup">
+</div>
 <div class="footer hidden">
     <select>
         <option value="size">Size</option>
@@ -246,7 +248,12 @@
                 } else {
                     return "transparent";  
                 }
-          });
+          })
+          .on("click", function(d) { 
+            if(!d.children){
+                window.open(d.url); 
+            }
+        });
 
         d3.selectAll(".foreignObject")
           .style("background-color", function(d){
@@ -255,7 +262,13 @@
                 } else {
                     return "transparent";  
                 }
-          });
+          })
+          .on("click", function(d) { 
+            if(!d.children){
+                window.open(d.url); 
+            }
+        })
+;
 
         // d3.selectAll(".label")
         //   .call(fontSize); 
@@ -297,7 +310,7 @@
                 return d.name;
             });
 
-        
+        //append a parallel div as .label and name it as .people. Maket ".text" return d.people. 
 
 
 

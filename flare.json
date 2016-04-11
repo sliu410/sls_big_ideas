@@ -19,7 +19,7 @@
                     "margintop":"20px",
                     "labelcolor":"#ffa800",
                     "children":[
-                        {"name":"Managing the Commons", "url":"managing_the_commons.html"},
+                        {"name":"Managing the Commons", "people":"lorem Ipsum","url":"writeups/managing_the_commons.html"},
                         {"name":"Participatory Processes & Civic Engagement"},
                         {"name":"Democratic Process"},
                         {"name":"Voice & Agency"}

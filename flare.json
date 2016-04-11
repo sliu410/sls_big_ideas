@@ -27,7 +27,7 @@
                 },
                 {"name":"Urban Development",
                 "zindex":99,
-                "labelcolor":"#FFA726",
+                "labelcolor":"#FB8C00",
                 "margintop":"0",
                     "children":[
                         {"name":"Sustainable Urban Development"},
@@ -36,7 +36,7 @@
                 },
                 {"name":"Systems",
                 "margintop":"0",
-                "labelcolor":"#FFA726",
+                "labelcolor":"#FB8C00",
                     "children":[
                         {"name":"Food-Energy-    Water Nexus"},
                         {"name":"Systems Thinking"},
@@ -49,7 +49,7 @@
                     ]
                 },
                 {"name":"Equity, Justice & Diversity",
-                "labelcolor":"#FFA726",
+                "labelcolor":"#FB8C00",
                 "zindex":100,
                  "margintop":"0",
                  "dxChange":"-7em", 
@@ -60,7 +60,7 @@
                     ]
                 },
                 {"name":"Science & Technology",
-                "labelcolor":"#FFA726",
+                "labelcolor":"#FB8C00",
                  "margintop":"20px",
                  "zindex":99,
                  "children":[
@@ -78,7 +78,7 @@
              "margintop":"20px",
              "children":[
                     {"name":"Community Research",
-                    "labelcolor":"#FFA726",
+                    "labelcolor":"#FB8C00",
                     "margintop":"0",
                      "dxChange":"-4em",
                      "children":[
@@ -91,7 +91,7 @@
                       ] 
                     },  
                     {"name":"Storytelling",
-                    "labelcolor":"#FFA726",
+                    "labelcolor":"#FB8C00",
                      "margintop":"0",
                       "children":[
                         {"name":"Digital Storytelling & Documentary Media"},
@@ -99,7 +99,7 @@
                       ]
                     },
                     {"name":"Leadership",
-                    "labelcolor":"#FFA726",
+                    "labelcolor":"#FB8C00",
                     "margintop":"40px",
                       "children":[
                         {"name":"Values-based Leadership", "margintop":"48px"},
@@ -107,7 +107,7 @@
                       ]
                     },            
                     {"name":"Experimentation",
-                    "labelcolor":"#FFA726",
+                    "labelcolor":"#FB8C00",
                     "margintop":"40px",
                      "dxChange":"2em",
                      "children":[
@@ -115,7 +115,7 @@
                      ]
                     },
                     {"name":"Environmental Assessment",
-                    "labelcolor":"#FFA726",
+                    "labelcolor":"#FB8C00",
                     "zindex":100,
                     "margintop":"0",
                      "children":[
@@ -131,9 +131,9 @@
     {
       "name": "SUSTAIN",
       "fontsize":"18px",
-      "labelcolor":"#00244b",
+      "labelcolor":"#04528C",
       "margintop":"0",
-      "level":"#04528C",
+      "level":"#00244b",
       "children":[
             {"name":"ACTION",
             "labelcolor":"#133B60",
@@ -163,9 +163,9 @@
         {
       "name": "SERVE",
       "fontsize":"18px",
-      "labelcolor":"#38976D",
+      "labelcolor":"#02D36F",
       "margintop":"0",
-      "level":"#02D36F",
+      "level":"#38976D",
       "children":[
           {"name":"PARTNERSHIP PRINCIPLES",
           "labelcolor":"#04AA57",

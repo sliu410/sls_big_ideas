@@ -299,8 +299,7 @@
                 window.open(d.url); 
             }
         });
-
-        var foreignObject = childEnterTransition.append('foreignObject')
+        childEnterTransition.append('foreignObject')
             .attr("class", "foreignObject")
             .attr("width", function(d) {
                 return Math.max(0.01, d.dx);
@@ -314,12 +313,6 @@
             .attr("class", "label")
             .text(function(d) {
                 return d.name;
-            })
-
-        foreignObject.append("div")
-            .attr("class","people")
-            .text(function(d){
-                return d.people; 
             })
             .on("click", function(d) { 
             if(!d.children){

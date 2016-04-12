@@ -248,12 +248,12 @@
                 } else {
                     return "transparent";  
                 }
-          })
-          .on("click", function(d) { 
-            if(!d.children){
-                window.open(d.url); 
-            }
-        });
+          });
+        //   .on("click", function(d) { 
+        //     if(!d.children){
+        //         window.open(d.url); 
+        //     }
+        // });
 
         d3.selectAll(".foreignObject")
           .style("background-color", function(d){
@@ -262,13 +262,13 @@
                 } else {
                     return "transparent";  
                 }
-          })
-          .on("click", function(d) { 
-            if(!d.children){
-                window.open(d.url); 
-            }
-        })
-;
+          });
+        //   .on("click", function(d) { 
+        //     if(!d.children){
+        //         window.open(d.url); 
+        //     }
+        // })
+
 
         // d3.selectAll(".label")
         //   .call(fontSize); 
@@ -311,16 +311,16 @@
                 return d.name;
             }); 
 
-        foreignObject.append("div")
-                     .attr("class","people")
-                     .text(function(d){
-                            return "Read stories from:" + " " + d.people;
-                     })
-                     .on("click", function(d) { 
-                        if(!d.children){
-                            window.open(d.url); 
-                        }
-                     });
+        // foreignObject.append("div")
+        //              .attr("class","people")
+        //              .text(function(d){
+        //                     return "Read stories from:" + " " + d.people;
+        //              });
+                     // .on("click", function(d) { 
+                     //    if(!d.children){
+                     //        window.open(d.url); 
+                     //    }
+                     // });
 
 
         if (supportsForeignObject) {

@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html class="no-js" lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -12,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <style type="text/css">
         body {
-            overflow: hidden;
+         /*   overflow: hidden;*/
             font-size: 12px;
             font-family: "Helvetica Neue", Helvetica;
         }
@@ -87,6 +88,50 @@
 
         .hidden {
             display:none;
+            visibility: hidden;
+        }
+
+
+        div.tooltip {   
+            position: absolute;   
+/*            display:flex; */     
+            text-align: left;   
+            max-width:300px;      
+            color: #f4f4f4 !important;                
+            padding: 1em;               
+            font: 12px sans-serif;      
+            background: black; 
+            border: 0px;     
+            box-shadow:-2px 0 5px #888; 
+            overflow-y:auto;
+           /* max-width:150px;*/
+
+            /*pointer-events: none;  */         
+        }
+
+        .author {
+            margin-right:1em;
+        }
+
+
+        .flex-container {
+            display: -webkit-flex;
+            display: flex;
+            max-width: 300px;
+
+        }
+
+        div.tooltip img {
+            width:50px;
+        }
+
+        a:link {
+            color:white;
+            text-decoration:none;
+        } /*You have to write a:link not just a */
+
+        a:visited {
+            color:white;
         }
 
     </style>
@@ -249,11 +294,6 @@
                     return "transparent";  
                 }
           });
-        //   .on("click", function(d) { 
-        //     if(!d.children){
-        //         window.open(d.url); 
-        //     }
-        // });
 
         d3.selectAll(".foreignObject")
           .style("background-color", function(d){
@@ -263,15 +303,6 @@
                     return "transparent";  
                 }
           });
-        //   .on("click", function(d) { 
-        //     if(!d.children){
-        //         window.open(d.url); 
-        //     }
-        // })
-
-
-        // d3.selectAll(".label")
-        //   .call(fontSize); 
 
         // remove transition
         parentCells.exit()
@@ -311,16 +342,112 @@
                 return d.name;
             }); 
 
-        // foreignObject.append("div")
-        //              .attr("class","people")
-        //              .text(function(d){
-        //                     return "Read stories from:" + " " + d.people;
-        //              });
-                     // .on("click", function(d) { 
-                     //    if(!d.children){
-                     //        window.open(d.url); 
-                     //    }
-                     // });
+        // Define the div for the tooltip. Sequence matters!!!
+        var div = d3.select("body").append("div")   
+            .attr("class", "tooltip")               
+            .style("opacity", 0);
+
+
+        d3.selectAll(".foreignObject")
+          .style("background-color", function(d){
+                 if (d.labelcolor){
+                    return d.labelcolor;  
+                } else {
+                    return "transparent";  
+                }
+          })
+          .on("mouseover", function(d) { 
+            var quote = d.quote; 
+            var author = d.author; 
+            var school = d.school; 
+            var author2= d.author2; 
+            var author3 = d.author3; 
+            var school3 = d.school3; 
+            var school2 = d.school2; 
+            var quote2 = d.quote2; 
+            var quote_1 = d.quote_1; 
+            var author_1 = d.author_1; 
+            var school_1 = d.school_1; 
+
+            var writeup = d.writeup; 
+
+             div.transition()        
+                .duration(100)    
+                .style("opacity", .8); 
+
+             div.html(function(d) {
+
+                    if(typeof author == "undefined") {
+                        author = " "; 
+                    } 
+
+                    if(typeof school == "undefined") {
+                        school = " "; 
+                    } 
+
+                    if(typeof quote == "undefined") {
+                        quote = " "; 
+                    } 
+
+                    if(typeof author2 == "undefined") {
+                        author2 = " "; 
+                    } 
+
+                    if(typeof author3 == "undefined") {
+                        author3 = " "; 
+                    } 
+
+                    if(typeof school2 == "undefined") {
+                        school2 = " "; 
+                    }    
+
+                    if(typeof school3 == "undefined") {
+                        school3 = " "; 
+                    }  
+
+                    if(typeof quote2 == "undefined") {
+                        quote2 = " "; 
+                    }     
+
+                   if(typeof author_1 == "undefined") {
+                        author_1 = " "; 
+                    }       
+
+                   if(typeof school_1 == "undefined") {
+                        school_1 = " "; 
+                    }  
+
+
+                   if(typeof quote_1 == "undefined") {
+                        quote_1 = " "; 
+
+                    }  
+
+                    return "<div class='quote'><a href='#'>" + "<p>&ldquo;" + 
+                    quote + "&ldquo;</p></div>" + "<div class='flex-container'>" + "<div class='author'>" + "<p><b>" + author + "</b><br>" + school + "</p></div>" + "<div class='author'>" + "<p><b>" + author2 + "</b><br>" + school2 + "</p></div>" + "<div class='author'>" + "<p><b>" + author3 + "</b><br>" + school3 + "</p></div>" +"</a></div>";  
+                }) 
+                .style("left", (d3.event.pageX) + "px")     
+                .style("top", (d3.event.pageY - 28) + "px")
+                .on("click",function(d){
+                    // d3.select(".writeup").load("writeups/managing_the_commons.html");
+                    // d3.request("writeups/managing_the_commons.html").get(function(){alert("got it!");});
+                    d3.xhr(writeup, function(data){
+                        // d3.select("div.writeup").html(data); 
+                        d3.select("div.writeup").html(data.responseText); //data is a XMLHttpRequest object 
+                    }); 
+                    // d3.html("writeups/managing_the_commons.html",function(error, data){
+                    //     // if error throw error; 
+                    //     d3.select("div.writeup").html(d); 
+                    // })
+                }); 
+            });
+
+           // div.append("a")
+           //    .attr("xlink:href","http://en.wikipedia.org/wiki/" + "link")
+           //        .append("rect") 
+           //        .style("left", (d3.event.pageX) + "px")     
+           //      .style("top", (d3.event.pageY - 28) + "px"); 
+           
 
 
         if (supportsForeignObject) {
@@ -502,7 +629,7 @@
         }
     }
 
-    $('div.label').hyphenate('en-us');
+    // $('div.label').hyphenate('en-us');
 </script>
 
 </html>

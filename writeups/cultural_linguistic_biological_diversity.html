@@ -1,650 +1,109 @@
-
-
-<!DOCTYPE html>
-<html class="no-js" lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-    <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
-    <script src="js/modernizr.js"></script> <!-- Modernizr -->
-    <title>Serve Learn Sustain Big Ideas</title>
-    <script src="//d3js.org/d3.v3.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="lib/jquery.hypher.js"></script>
-    <script src="lib/en-us.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-    <style type="text/css">
-        body {
-         /*   overflow: hidden;*/
-            font-size: 12px;
-            font-family: "Helvetica Neue", Helvetica;
-        }
-
-        .footer {
-            z-index: 1;
-            display: block;
-            font-size: 26px;
-            font-weight: 200;
-            text-shadow: 0 1px 0 #fff;
-        }
-
-        svg {
-            overflow: scroll;
-        }
-
-        rect {
-            pointer-events: all;
-            cursor: pointer;
-            stroke: #EEEEEE;
-            stroke-width: 1.5;
-        }
-
-        .foreignObject {
-            border: solid 1.5px white;
-        }
-
-        .chart {
-            display: block;
-            margin: auto;
-        }
-
-        .parent .label {
-            /*color: #FFFFFF;*/
-            font-size:13px; 
-/*            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-            -webkit-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-            -moz-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);*/
-            text-align:center;
-        }
-
-        .labelbody {
-            background: transparent;
-            margin:1px;
-            text-align: center !important;
-        }
-
-        .parent .labelbody {
-           height:100% !important;
-        }
-
-        .label {
-            white-space: pre;
-            overflow: hidden;
-            text-overflow: initial;
-          /*  color:white;*/
-            word-break: break-word;
-            font-weight: 400 !important; 
-            padding:0 !important;
-        }
-
-        .child .label {
-            white-space: pre-wrap;
-            text-overflow: initial;
-            font-size:13px; 
-            margin: 1px;
-            color:black !important;
-        }
-
-        .cell {
-            font-size: 13px;
-            cursor: pointer
-        }
-
-        .hidden {
-            display:none;
-            visibility: hidden;
-        }
-
-
-        div.tooltip {   
-            position: absolute;   
-/*            display:flex; */     
-            text-align: left;   
-            max-width:300px;      
-            color: #f4f4f4 !important;                
-            padding: 1em;               
-            font: 12px sans-serif;      
-            background: black; 
-            border: 0px;     
-            box-shadow:-2px 0 5px #888; 
-            overflow-y:auto;
-           /* max-width:150px;*/
-
-            /*pointer-events: none;  */         
-        }
-
-        .author {
-            margin-right:1em;
-        }
-
-
-        .flex-container {
-            display: -webkit-flex;
-            display: flex;
-            max-width: 300px;
-
-        }
-
-        div.tooltip img {
-            width:50px;
-        }
-
-        a:link {
-            color:white;
-            text-decoration:none;
-        } /*You have to write a:link not just a */
-
-        a:visited {
-            color:white;
-        }
-
-
-    </style>
-</head>
-<body>
-<div id="body"></div>
-<div class="writeup">
-</div>
-<div class="footer hidden">
-    <select>
-        <option value="size">Size</option>
-        <option value="count">Count</option>
-    </select>
-</div>
-</body>
-
-<script type="text/javascript">
-    var supportsForeignObject = Modernizr.svgforeignobject;
-    var margin = {top: 40, right: 10, bottom: 10, left: 10},
-    chartWidth = 1100 - margin.left - margin.right,
-    chartHeight = 640 - margin.top - margin.bottom; 
-    var xscale = d3.scale.linear().range([0, chartWidth]);
-    var yscale = d3.scale.linear().range([0, chartHeight]);
-     var color = d3.scale.ordinal()
-                  .domain(["SERVE", "LEARN", "SUSTAIN"])
-                  .range(["#00d56b", "#FFCC80" , "#65B1EA"]);
-    var headerHeight = 28;
-    var headerColor = function(d){
-        color(d.name); 
-    }; 
-    var transitionDuration = 500;
-    var root;
-    var node;  
-
-    var treemap = d3.layout.treemap()
-        .round(false)
-        .size([chartWidth, chartHeight])
-        .sticky(true)
-        .value(function(d) {
-            return 20;
-        });
-
-    var chart = d3.select("#body")
-        .append("svg:svg")
-        .attr("width", chartWidth)
-        .attr("height", chartHeight)
-        .append("svg:g");
-
-    d3.json("flare.json", function(data) {
-        node = root = data;
-        var nodes = treemap.nodes(root);
-
-        // function fontSize(d,i) {
-        // var size = d.dx/5;
-        // var words = d3.selectAll(".label").text().split(' ');
-        // var word = words[0];
-        // var width = d.dx;
-        // var height = d.dy;
-        // var length = 0;
-        // d3.select(this).style("font-size", size + "px").text(word);
-        // while(((this.getBBox().width >= width) || (this.getBBox().height >= height)) && (size > 12))
-        //  {
-        //   size--;
-        //   d3.select(this).style("font-size", size + "px");
-        //   this.firstChild.data = word;
-        //  }
-        // }  
-
-        var children = nodes.filter(function(d) {
-            return !d.children;
-        });
-        var parents = nodes.filter(function(d) {
-            return d.children;
-        });
-
-        // create parent cells
-        var parentCells = chart.selectAll("g.cell.parent")
-            .data(parents, function(d) {
-                return "p-" + d.name;
-            });
-        var parentEnterTransition = parentCells.enter()
-            .append("g")
-            .attr("class", "cell parent")
-            .on("click", function(d) {
-                zoom(d);
-            });
-        parentEnterTransition.append("rect")
-            .attr("width", function(d) {
-                return Math.max(0.01, d.dx);
-            })
-            .style("display",function(d){
-                if (d.depth === 0){
-                    return "none"; 
-                }else {
-                    return "visible"; 
-                }
-            })
-            .attr("height", headerHeight)
-            .style("fill", headerColor);
-        parentEnterTransition.append('foreignObject')
-            .attr("class", "foreignObject")
-            .append("xhtml:body")
-            .attr("class", "labelbody")
-            .append("div")
-            .attr("class", "label");
-        // update transition
-        var parentUpdateTransition = parentCells.transition().duration(transitionDuration);
-        parentUpdateTransition.select(".cell")
-            .attr("transform", function(d) {
-                return "translate(" + d.dx + "," + d.y + ")";
-            });
-        parentUpdateTransition.select("rect")
-            .attr("width", function(d) {
-                return Math.max(0.01, d.dx);
-            })
-            .attr("height", headerHeight)
-            .style("fill", headerColor);
-        parentUpdateTransition.select(".foreignObject")
-            .attr("width", function(d) {
-                return Math.max(0.01, d.dx);
-            })
-            .attr("height", headerHeight)
-            .select(".labelbody .label")
-            .text(function(d) {
-                return d.name;
-            });
-
-        d3.selectAll(".label")
-          .style("font-weight",function(d){
-                if (d.depth === 1){
-                    return "bold"; 
-                } else {
-                    return "regular"; 
-                }
-            })
-          .style("font-size",function(d){
-                 if (d.depth === 1){
-                    return "24px"; 
-                } else if(d.depth ===2){
-                    return "16px"; 
-                }else {
-                    return "13px"
-                }
-          })
-          .style("color",function(d){
-                 if (d.depth === 1){
-                    return "white"; 
-                } else {
-                    return "black";
-                }
-          })
-           .classed("hyphenate", true);
-
-
-        d3.selectAll(".labelbody")
-          .style("background-color", function(d){
-                 if (d.labelcolor){
-                    return d.labelcolor;  
-                } else {
-                    return "transparent";  
-                }
-          });
-
-        d3.selectAll(".foreignObject")
-          .style("background-color", function(d){
-                 if (d.labelcolor){
-                    return d.labelcolor;  
-                } else {
-                    return "transparent";  
-                }
-          });
-
-        // remove transition
-        parentCells.exit()
-            .remove();
-
-        // create children cells
-        var childrenCells = chart.selectAll("g.cell.child")
-            .data(children, function(d) {
-                return "c-" + d.name;
-            });
-        // enter transition
-        var childEnterTransition = childrenCells.enter()
-            .append("g")
-            .attr("class", "cell child")
-            .on("click", function(d) {
-                zoom(node === d.parent ? root : d.parent);
-            });
-        childEnterTransition.append("rect")
-            .classed("background", true)
-            .style("fill", function(d) {
-                return color(d.parent.parent.name);
-            }); 
-
-        var foreignObject = childEnterTransition.append('foreignObject')
-            .attr("class", "foreignObject")
-            .attr("width", function(d) {
-                return Math.max(0.01, d.dx);
-            })
-            .attr("height", function(d) {
-                return Math.max(0.01, d.dy);
-            })
-            .append("xhtml:body")
-            .attr("class", "labelbody")
-            .append("div")
-            .attr("class", "label")
-            .text(function(d) {
-                return d.name;
-            }); 
-
-        // Define the div for the tooltip. Sequence matters!!!
-        var div = d3.select("body").append("div")   
-            .attr("class", "tooltip")               
-            .style("opacity", 0);
-
-
-        d3.selectAll(".foreignObject")
-          .style("background-color", function(d){
-                 if (d.labelcolor){
-                    return d.labelcolor;  
-                } else {
-                    return "transparent";  
-                }
-          })
-          .on("mouseover", function(d) { 
-            var quote = d.quote; 
-            var author = d.author; 
-            var school = d.school; 
-            var author2= d.author2; 
-            var author3 = d.author3; 
-            var school3 = d.school3; 
-            var school2 = d.school2; 
-            var quote2 = d.quote2; 
-            var quote_1 = d.quote_1; 
-            var author_1 = d.author_1; 
-            var school_1 = d.school_1; 
-
-            var writeup = d.writeup; 
-
-             div.transition()        
-                .duration(100)    
-                .style("opacity", .8); 
-
-             div.html(function(d) {
-
-                    if(typeof author == "undefined") {
-                        author = " "; 
-                    } 
-
-                    if(typeof school == "undefined") {
-                        school = " "; 
-                    } 
-
-                    if(typeof quote == "undefined") {
-                        quote = " "; 
-                    } 
-
-                    if(typeof author2 == "undefined") {
-                        author2 = " "; 
-                    } 
-
-                    if(typeof author3 == "undefined") {
-                        author3 = " "; 
-                    } 
-
-                    if(typeof school2 == "undefined") {
-                        school2 = " "; 
-                    }    
-
-                    if(typeof school3 == "undefined") {
-                        school3 = " "; 
-                    }  
-
-                    if(typeof quote2 == "undefined") {
-                        quote2 = " "; 
-                    }     
-
-                   if(typeof author_1 == "undefined") {
-                        author_1 = " "; 
-                    }       
-
-                   if(typeof school_1 == "undefined") {
-                        school_1 = " "; 
-                    }  
-
-
-                   if(typeof quote_1 == "undefined") {
-                        quote_1 = " "; 
-
-                    }  
-
-                    return "<div class='quote'><a href='#'>" + "<p>&ldquo;" + 
-                    quote + "&ldquo;</p></div>" + "<div class='flex-container'>" + "<div class='author'>" + "<p><b>" + author + "</b><br>" + school + "</p></div>" + "<div class='author'>" + "<p><b>" + author2 + "</b><br>" + school2 + "</p></div>" + "<div class='author'>" + "<p><b>" + author3 + "</b><br>" + school3 + "</p></div>" +"</a></div>";  
-                }) 
-                .style("left", (d3.event.pageX) + "px")     
-                .style("top", (d3.event.pageY - 28) + "px")
-                .on("click",function(d){
-                    // d3.select(".writeup").load("writeups/managing_the_commons.html");
-                    // d3.request("writeups/managing_the_commons.html").get(function(){alert("got it!");});
-                    d3.xhr(writeup, function(data){
-                        // d3.select("div.writeup").html(data); 
-                        if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                          d3.select("div.writeup").html(data.responseText); //data is a XMLHttpRequest object 
-                        }
-                    }); 
-                    // d3.html("writeups/managing_the_commons.html",function(error, data){
-                    //     // if error throw error; 
-                    //     d3.select("div.writeup").html(d); 
-                    // })
-                }); 
-            });
-
-           // div.append("a")
-           //    .attr("xlink:href","http://en.wikipedia.org/wiki/" + "link")
-           //        .append("rect") 
-           //        .style("left", (d3.event.pageX) + "px")     
-           //      .style("top", (d3.event.pageY - 28) + "px"); 
-           
-
-
-        if (supportsForeignObject) {
-            childEnterTransition.selectAll(".foreignObject")
-                .style("display", "visible");
-        } else {
-            childEnterTransition.selectAll(".foreignObject .labelbody .label")
-                .style("display", "visible");
-        }
-
-        // update transition
-        var childUpdateTransition = childrenCells.transition().duration(transitionDuration);
-        childUpdateTransition.select(".cell")
-            .attr("transform", function(d) {
-                return "translate(" + d.x  + "," + d.y + ")";
-            });
-        childUpdateTransition.select("rect")
-            .attr("width", function(d) {
-                return Math.max(0.01, d.dx);
-            })
-            .attr("height", function(d) {
-                return d.dy;
-            })
-            .style("fill", function(d) {
-                if(d.parent.parent.parent){
-                return color(d.parent.parent.parent.name);
-            } else {
-                return color(d.parent.parent.name);
-            }
-            });
-        childUpdateTransition.select(".foreignObject")
-            .attr("width", function(d) {
-                return Math.max(0.01, d.dx);
-            })
-            .attr("height", function(d) {
-                return Math.max(0.01, d.dy);
-            })
-            .select(".labelbody .label")
-            .text(function(d) {
-                return d.name;
-            });
-        // exit transition
-        childrenCells.exit()
-            .remove();
-
-        d3.select("select").on("change", function() {
-            console.log("select zoom(node)");
-            treemap.value(this.value == "size" ? size : count)
-                .nodes(root);
-            zoom(node);
-        });
-
-        zoom(node);
-    });
-
-
-    function size(d) {
-        return d.size;
-    }
-
-
-    function count(d) {
-        return 1;
-    }
-
-
-    //and another one
-    function textHeight(d) {
-        var ky = chartHeight / d.dy;
-        yscale.domain([d.y, d.y + d.dy]);
-        return (ky * d.dy) / headerHeight;
-    }
-
-
-    function getRGBComponents (color) {
-        var r = color.substring(1, 3);
-        var g = color.substring(3, 5);
-        var b = color.substring(5, 7);
-        return {
-            R: parseInt(r, 16),
-            G: parseInt(g, 16),
-            B: parseInt(b, 16)
-        };
-    }
-
-
-    function idealTextColor (bgColor) {
-        var nThreshold = 105;
-        var components = getRGBComponents(bgColor);
-        var bgDelta = (components.R * 0.299) + (components.G * 0.587) + (components.B * 0.114);
-        return ((255 - bgDelta) < nThreshold) ? "#000000" : "#ffffff";
-    }
-
-
-    function zoom(d) {
-        this.treemap
-            .padding([headerHeight/(chartHeight/d.dy), 0, 0, 0])
-            .nodes(d);
-
-        // moving the next two lines above treemap layout messes up padding of zoom result
-        var kx = chartWidth  / d.dx;
-        var ky = chartHeight / d.dy;
-        var level = d;
-
-        xscale.domain([d.x, d.x + d.dx]);
-        yscale.domain([d.y, d.y + d.dy]);
-
-        if (node != level) {
-            if (supportsForeignObject) {
-                chart.selectAll(".cell.child .foreignObject")
-                    .style("display", "visible");
-            } else {
-                chart.selectAll(".cell.child .foreignObject .labelbody .label")
-                    .style("display", "visible");
-            }
-        }
-
-        var zoomTransition = chart.selectAll("g.cell").transition().duration(transitionDuration)
-            .attr("transform", function(d) {
-                return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")";
-            })
-            .each("end", function(d, i) {
-                if (!i && (level !== self.root)) {
-                    chart.selectAll(".cell.child")
-                        .filter(function(d) {
-                            return d.parent === self.node; // only get the children for selected group
-                        })
-                        .select(".foreignObject .labelbody .label")
-                        .style("color", function(d) {
-                            return idealTextColor(color(d.parent.parent.name));
-                        });
-
-                    if (supportsForeignObject) {
-                        chart.selectAll(".cell.child")
-                            .filter(function(d) {
-                                return d.parent === self.node; // only get the children for selected group
-                            })
-                            .select(".foreignObject")
-                            .style("display", "");
-                    } else {
-                        chart.selectAll(".cell.child")
-                            .filter(function(d) {
-                                return d.parent === self.node; // only get the children for selected group
-                            })
-                            .select(".foreignObject .labelbody .label")
-                            .style("display", "");
-                    }
-                }
-            });
-
-        zoomTransition.select(".foreignObject")
-            .attr("width", function(d) {
-                return Math.max(0.01, kx * d.dx);
-            })
-            .attr("height", function(d) {
-                return d.children ? headerHeight*1.5 : Math.max(0.01, ky * d.dy);
-            })
-            .select(".labelbody .label")
-            .text(function(d) {
-                return d.name;
-            });
-
-        // update the width/height of the rects
-        zoomTransition.select("rect")
-            .attr("width", function(d) {
-                return Math.max(0.01, kx * d.dx);
-            })
-            .attr("height", function(d) {
-                return d.children ? headerHeight*1.5 : Math.max(0.01, ky * d.dy);
-            })
-            .style("fill", function(d) {
-                return d.children ? headerColor : color(d.parent.parent.name);
-            });
-
-        node = d;
-
-        if (d3.event) {
-            d3.event.stopPropagation();
-        }
-    }
-
-    // $('div.label').hyphenate('en-us');
-</script>
-
+<html lang="en">
+    <head>
+        <meta name="viewport" content="initial-scale=1">
+
+        <style>
+          div.author p {
+            margin-bottom:0;
+          }
+
+          .author h4 {
+            margin-top:20px !important;
+          }
+
+          .breadcrumb {
+            background-color:white !important;
+          }
+
+          ol {
+            padding-left:0 !important;
+          }
+
+          ol li {
+            padding:.5em !important;
+          }
+
+          .breadcrumb > li::before {
+            color:white !important;
+          }
+
+          h3 {
+            margin-top:0 !important;
+          }
+
+          #writeup a {
+            color:blue !important;
+          }
+
+          #ajax p {
+            font-size:13px;
+          }
+
+          p {
+            text-indent:none !important;
+          }
+
+          #ajax {
+            margin-right:auto !important;
+          }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid" style="overflow-y:scroll;" id="ajax">
+            <div class="row">
+              <div class="col-md-12">
+                    <ol class="breadcrumb" style="margin-bottom: 5px;">
+                      <li style="background-color:#f16c00;">Learn</li>
+                      <li style="background-color:#fd8c00;">Concepts</li>
+                      <li style="background-color:#ffa800;">Equity, Justice &amp; Diversity</li>
+                      <li style="background-color:#FFCC80;">Cultural, Linguistic &amp; Biological Diversity</li>
+                    </ol>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-7" id="writeup">
+                 <h3 style="margin-bottom:0;">Concept: Cultural, Linguistic, and Biological Diversity</h3>
+
+                 <h4>How would you define this big idea?</h4>
+                 <p>There is a growing transdisciplinary field that investigates the links between the world’s cultural, linguistic, and biological diversity.  By rejecting the separation between nature and culture, this field of study examines the various threats on diversity for both humanity and the earth.  Whether preserving cultures, languages, or plant and animal species, experts in this area are concerned with what is under threat of extinction or assimilation as well as with what can be learned as a result of the preservation or conservation of diversity. The impetus for the emergence of this field came from the observation that all three diversities are under threat by some of the same forces and from the perception that loss of diversity at all levels spells dramatic consequences for the planet.</p>
+
+                 <h4>How is this big idea included in your work?</h4>
+                 <p>I am planning a course related to “sustaining cultural and linguistic diversity” in Spain for my “Serve-Learn-Sustain in Spain” semester abroad program.  The course, “Sustainability in Spain,” is currently taught in the Spain LBAT (Language for Business and Technology) Program, but will have an added component on “social sustainability” in the semester-abroad program to begin in spring 2018.  We will examine national vs. regional identities in Spain and the role that different cultural and linguistic sub-groups play. I also teach several on-campus courses related to “service-Learning,” “community outreach,” and “community internship,” in which students examines issues of cultural and linguistic diversity in the local Latino community.  Concepts such as assimilation and preservation—of culture, of language, of knowledge—are central themes of these courses. I also teach the senior capstone course, “Intercultural Seminar,” which teaches students to properly engage in cross-cultural comparison and to understand different cultural dimensions.  We specifically examine issues of cultural, linguistic, and biological diversity in case studies from Mexico and Peru.</p>
+
+                 <h4>Learning more:</h4>
+                 <p>
+                  <a href="https://www.cbd.int/meetings/icbcd/" target="_blank">International Conference on Biological and Cultural Diversity</a>
+                 </p>
+
+                  <p>
+                    <a href="http://www.annualreviews.org/doi/full/10.1146/annurev.anthro.34.081804.120437" target="_blank">LINGUISTIC, CULTURAL, AND BIOLOGICAL DIVERSITY</a>
+                  </p>
+
+                  <p>
+                  Over the past decade, the field of biocultural diversity has arisen as an area of transdisciplinary research concerned with investigating the links between the world's linguistic, cultural, and biological diversity as manifestations of the diversity of life. The impetus for the emergence of this field came from the observation that all three diversities are under threat by some of the same forces and from the perception that loss of diversity at all levels spells dramatic consequences for humanity and the earth. Accordingly, the field of biocultural diversity has developed with both a theoretical and a practical side, the latter focusing on on-the-ground work and policy, as well as with an ethics and human rights component. This review provides some background on the historical antecedents and beginnings of this field and on its philosophical and ethical underpinnings, and then surveys the key literature on biocultural diversity, concentrating on three main aspects: global and regional studies on the links between linguistic, cultural, and biological diversity; the measurement and assessment of biocultural diversity; and the protection and maintenance of biocultural diversity. The review concludes with some considerations about future prospects for this emerging field.
+                  </p>
+
+                  <p>
+                    <a href=" http://www.conservationandsociety.org/article.asp?issn=0972-4923;year=2009;volume=7;issue=2;spage=100;epage=112;aulast=Pretty" target="_blank">The Intersections of Biological Diversity and Cultural Diversity: Towards Integration</a>
+                  </p>
+
+                  <p>
+                  There is an emerging recognition that the diversity of life comprises both biological and cultural diversity. In the past, however, it has been common to make divisions between nature and culture, arising partly out of a desire to control nature. The range of interconnections between biological and cultural diversity are reflected in the growing variety of environmental sub-disciplines that have emerged. In this article, we present ideas from a number of these sub-disciplines. We investigate four bridges linking both types of diversity (beliefs and worldviews, livelihoods and practices, knowledge bases and languages, and norms and institutions), seek to determine the common drivers of loss that exist, and suggest a novel and integrative path forwards. We recommend that future policy responses should target both biological and cultural diversity in a combined approach to conservation. The degree to which biological diversity is linked to cultural diversity is only beginning to be understood. But it is precisely as our knowledge is advancing that these complex systems are under threat. While conserving nature alongside human cultures presents unique challenges, we suggest that any hope for saving biological diversity is predicated on a concomitant effort to appreciate and protect cultural diversity.</p>
+              </div>
+              <div class="col-md-3">
+                <div class="author">
+                  <h4 style="margin-top:20px">Written by:</h4>
+                  <span><b>Kelly Comfort</b></span><br>
+                  <span>School of Modern Languages</span>
+                  <hr>
+                  <h4>Read more related articles by:</h4>
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+        </div>
+      </div>
+    </body>
 </html>

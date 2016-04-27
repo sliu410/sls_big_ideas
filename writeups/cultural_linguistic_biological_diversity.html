@@ -446,7 +446,9 @@
                     // d3.request("writeups/managing_the_commons.html").get(function(){alert("got it!");});
                     d3.xhr(writeup, function(data){
                         // d3.select("div.writeup").html(data); 
-                        d3.select("div.writeup").html(data.responseText); //data is a XMLHttpRequest object 
+                        if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                          d3.select("div.writeup").html(data.responseText); //data is a XMLHttpRequest object 
+                        }
                     }); 
                     // d3.html("writeups/managing_the_commons.html",function(error, data){
                     //     // if error throw error; 

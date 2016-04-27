@@ -107,10 +107,11 @@
                          "school":"School of Biology",
                          "author2":"Juan Carlos Rodriguez",
                          "school2":"School of Modern Languages",
-                         "author3":"",
+                         "author3":"Breton et al.",
                          "school3":"",
                          "author4":"Kelly Comfort",
-                         "school4":"School of Modern Languages"},
+                         "school4":"School of Modern Languages",
+                         "writeup":"writeups/cultural_linguistic_biological_diversity.html"},
                         {"name":"Equity and Climate",
                          "author":"Alice Favero",
                          "school":"School of Public Policy",
@@ -223,6 +224,7 @@
                          "school":"College of Sciences",
                          "school2":"School of Biology",
                          "school3":"School of Public Policy",
+                         "writeup":"#",
                          "margintop":"60px"}
                      ]
                     },
@@ -319,7 +321,7 @@
       "level":"#a3ddc3",
       "children":[
           {"name":"PARTNERSHIP PRINCIPLES",
-          "labelcolor":"#18b771",
+          "labelcolor":"#5bc295",
           "zindex":100,
           "margintop":"20px",
           "dxChange":"8em",

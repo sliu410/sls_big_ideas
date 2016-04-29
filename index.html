@@ -303,7 +303,14 @@
                 }else {
                     return "black"; 
                 }
-            }); 
+            })
+            .style("cursor",function(d){
+                if (d.writeup){
+                    return "pointer"; 
+                }else {
+                    return "default"; 
+                }
+            });
 
 
         d3.selectAll(".foreignObject")
@@ -394,9 +401,8 @@
                 return d.name;
             }); 
 
-        if (d.writeup){
+
             d3.selectAll(".label").on("click",function(d){window.open(d.writeup);});
-        }
 
 
         // update the width/height of the rects

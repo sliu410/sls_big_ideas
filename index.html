@@ -1,29 +1,28 @@
 
 
 <!DOCTYPE html>
-<html class="no-js" lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+<html class="no-js" lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
-
-<!--     <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-    <!-- <link rel="stylesheet" href="css/style.css"> --> <!-- Resource style --> 
-    <script src="js/modernizr.js"></script> <!-- Modernizr -->
     <title>Serve Learn Sustain Big Ideas</title>
     <script src="//d3js.org/d3.v3.min.js"></script>
+    
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="lib/jquery.hypher.js"></script>
     <script src="lib/en-us.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
     <style type="text/css">
         body {
-         /*   overflow: hidden;*/
             font-size: 12px;
             font-family: "Helvetica Neue", Helvetica;
         }
@@ -57,11 +56,7 @@
         }
 
         .parent .label {
-            /*color: #FFFFFF;*/
-            font-size:13px; 
-/*            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-            -webkit-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-            -moz-text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);*/
+            font-size:12px; 
             text-align:center;
         }
 
@@ -79,7 +74,6 @@
             white-space: pre;
             overflow: hidden;
             text-overflow: initial;
-          /*  color:white;*/
             word-break: break-word;
             font-weight: 400 !important; 
             padding:0 !important;
@@ -88,13 +82,13 @@
         .child .label {
             white-space: pre-wrap;
             text-overflow: initial;
-            font-size:13px; 
+            font-size:12px; 
             margin: 1px;
-            color:black !important;
+/*            color:black !important;*/
         }
 
         .cell {
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer
         }
 
@@ -103,49 +97,14 @@
             visibility: hidden;
         }
 
-
-        div.tooltip {   
-            position: absolute;   
-/*            display:flex; */     
-            text-align: left;   
-            max-width:300px;      
-            color: #f4f4f4 !important;                
-            padding: 1em;               
-            font: 12px sans-serif;      
-            background: black; 
-            border: 0px;     
-            box-shadow:-2px 0 5px #888; 
-            overflow-y:auto;
-           /* max-width:150px;*/
-
-            /*pointer-events: none;  */         
-        }
-
-        .author {
-            margin-right:1em;
-        }
-
-
-        .flex-container {
-            display: -webkit-flex;
-            display: flex;
-            max-width: 300px;
-
-        }
-
-        div.tooltip img {
-            width:50px;
-        }
-
         a:link {
-            color:white;
-            text-decoration:none;
+            text-decoration:underline;
+            color:blue;
         } /*You have to write a:link not just a */
 
         a:visited {
-            color:white;
+            color:purple;
         }
-
 
     </style>
 </head>
@@ -194,27 +153,12 @@
 
     d3.json("flare.json", function(data) {
         node = root = data;
-        var nodes = treemap.nodes(root);
-
-        // function fontSize(d,i) {
-        // var size = d.dx/5;
-        // var words = d3.selectAll(".label").text().split(' ');
-        // var word = words[0];
-        // var width = d.dx;
-        // var height = d.dy;
-        // var length = 0;
-        // d3.select(this).style("font-size", size + "px").text(word);
-        // while(((this.getBBox().width >= width) || (this.getBBox().height >= height)) && (size > 12))
-        //  {
-        //   size--;
-        //   d3.select(this).style("font-size", size + "px");
-        //   this.firstChild.data = word;
-        //  }
-        // }  
+        var nodes = treemap.nodes(root); 
 
         var children = nodes.filter(function(d) {
             return !d.children;
         });
+
         var parents = nodes.filter(function(d) {
             return d.children;
         });
@@ -227,9 +171,7 @@
         var parentEnterTransition = parentCells.enter()
             .append("g")
             .attr("class", "cell parent")
-            .on("click", function(d) {
-                zoom(d);
-            });
+
         parentEnterTransition.append("rect")
             .attr("width", function(d) {
                 return Math.max(0.01, d.dx);
@@ -249,6 +191,7 @@
             .attr("class", "labelbody")
             .append("div")
             .attr("class", "label");
+
         // update transition
         var parentUpdateTransition = parentCells.transition().duration(transitionDuration);
         parentUpdateTransition.select(".cell")
@@ -285,7 +228,7 @@
                 } else if(d.depth ===2){
                     return "16px"; 
                 }else {
-                    return "13px"
+                    return "12px"
                 }
           })
           .style("color",function(d){
@@ -294,9 +237,7 @@
                 } else {
                     return "black";
                 }
-          })
-           .classed("hyphenate", true);
-
+          }); 
 
         d3.selectAll(".labelbody")
           .style("background-color", function(d){
@@ -325,13 +266,12 @@
             .data(children, function(d) {
                 return "c-" + d.name;
             });
+
         // enter transition
         var childEnterTransition = childrenCells.enter()
             .append("g")
-            .attr("class", "cell child")
-            .on("click", function(d) {
-                zoom(node === d.parent ? root : d.parent);
-            });
+            .attr("class", "cell child"); 
+
         childEnterTransition.append("rect")
             .classed("background", true)
             .style("fill", function(d) {
@@ -352,12 +292,14 @@
             .attr("class", "label")
             .text(function(d) {
                 return d.name;
+            })
+            .style("color",function(d){
+                if (d.writeup){
+                    return "#0D4F8B"; 
+                }else {
+                    return "black"; 
+                }
             }); 
-
-        // Define the div for the tooltip. Sequence matters!!!
-        var div = d3.select("body").append("div")   
-            .attr("class", "tooltip")               
-            .style("opacity", 0);
 
 
         d3.selectAll(".foreignObject")
@@ -367,102 +309,7 @@
                 } else {
                     return "transparent";  
                 }
-          })
-          .on("mouseover", function(d) { 
-            var quote = d.quote; 
-            var author = d.author; 
-            var school = d.school; 
-            var author2= d.author2; 
-            var author3 = d.author3; 
-            var school3 = d.school3; 
-            var school2 = d.school2; 
-            var quote2 = d.quote2; 
-            var quote_1 = d.quote_1; 
-            var author_1 = d.author_1; 
-            var school_1 = d.school_1; 
-
-            var writeup = d.writeup; 
-
-             div.transition()        
-                .duration(100)    
-                .style("opacity", .8); 
-
-             div.html(function(d) {
-
-                    if(typeof author == "undefined") {
-                        author = " "; 
-                    } 
-
-                    if(typeof school == "undefined") {
-                        school = " "; 
-                    } 
-
-                    if(typeof quote == "undefined") {
-                        quote = " "; 
-                    } 
-
-                    if(typeof author2 == "undefined") {
-                        author2 = " "; 
-                    } 
-
-                    if(typeof author3 == "undefined") {
-                        author3 = " "; 
-                    } 
-
-                    if(typeof school2 == "undefined") {
-                        school2 = " "; 
-                    }    
-
-                    if(typeof school3 == "undefined") {
-                        school3 = " "; 
-                    }  
-
-                    if(typeof quote2 == "undefined") {
-                        quote2 = " "; 
-                    }     
-
-                   if(typeof author_1 == "undefined") {
-                        author_1 = " "; 
-                    }       
-
-                   if(typeof school_1 == "undefined") {
-                        school_1 = " "; 
-                    }  
-
-
-                   if(typeof quote_1 == "undefined") {
-                        quote_1 = " "; 
-
-                    }  
-
-                    return "<div class='quote'><a href='#'>" + "<p>&ldquo;" + 
-                    quote + "&ldquo;</p></div>" + "<div class='flex-container'>" + "<div class='author'>" + "<p><b>" + author + "</b><br>" + school + "</p></div>" + "<div class='author'>" + "<p><b>" + author2 + "</b><br>" + school2 + "</p></div>" + "<div class='author'>" + "<p><b>" + author3 + "</b><br>" + school3 + "</p></div>" +"</a></div>";  
-                }) 
-                .style("left", (d3.event.pageX) + "px")     
-                .style("top", (d3.event.pageY - 28) + "px")
-                .on("click",function(d){
-                    // d3.select(".writeup").load("writeups/managing_the_commons.html");
-                    // d3.request("writeups/managing_the_commons.html").get(function(){alert("got it!");});
-                    d3.xhr(writeup, function(data){
-                        // d3.select("div.writeup").html(data); 
-                        
-                            d3.select("div.writeup").html(data.responseText); //data is a XMLHttpRequest object 
-
-                    }); 
-                    // d3.html("writeups/managing_the_commons.html",function(error, data){
-                    //     // if error throw error; 
-                    //     d3.select("div.writeup").html(d); 
-                    // })
-                }); 
-            });
-
-           // div.append("a")
-           //    .attr("xlink:href","http://en.wikipedia.org/wiki/" + "link")
-           //        .append("rect") 
-           //        .style("left", (d3.event.pageX) + "px")     
-           //      .style("top", (d3.event.pageY - 28) + "px"); 
-           
-
+          }); 
 
         if (supportsForeignObject) {
             childEnterTransition.selectAll(".foreignObject")
@@ -471,61 +318,8 @@
             childEnterTransition.selectAll(".foreignObject .labelbody .label")
                 .style("display", "visible");
         }
-
-        // update transition
-        var childUpdateTransition = childrenCells.transition().duration(transitionDuration);
-        childUpdateTransition.select(".cell")
-            .attr("transform", function(d) {
-                return "translate(" + d.x  + "," + d.y + ")";
-            });
-        childUpdateTransition.select("rect")
-            .attr("width", function(d) {
-                return Math.max(0.01, d.dx);
-            })
-            .attr("height", function(d) {
-                return d.dy;
-            })
-            .style("fill", function(d) {
-                if(d.parent.parent.parent){
-                return color(d.parent.parent.parent.name);
-            } else {
-                return color(d.parent.parent.name);
-            }
-            });
-        childUpdateTransition.select(".foreignObject")
-            .attr("width", function(d) {
-                return Math.max(0.01, d.dx);
-            })
-            .attr("height", function(d) {
-                return Math.max(0.01, d.dy);
-            })
-            .select(".labelbody .label")
-            .text(function(d) {
-                return d.name;
-            });
-        // exit transition
-        childrenCells.exit()
-            .remove();
-
-        d3.select("select").on("change", function() {
-            console.log("select zoom(node)");
-            treemap.value(this.value == "size" ? size : count)
-                .nodes(root);
-            zoom(node);
-        });
-
         zoom(node);
     });
-
-
-    function size(d) {
-        return d.size;
-    }
-
-
-    function count(d) {
-        return 1;
-    }
 
 
     //and another one
@@ -582,35 +376,7 @@
         var zoomTransition = chart.selectAll("g.cell").transition().duration(transitionDuration)
             .attr("transform", function(d) {
                 return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")";
-            })
-            .each("end", function(d, i) {
-                if (!i && (level !== self.root)) {
-                    chart.selectAll(".cell.child")
-                        .filter(function(d) {
-                            return d.parent === self.node; // only get the children for selected group
-                        })
-                        .select(".foreignObject .labelbody .label")
-                        .style("color", function(d) {
-                            return idealTextColor(color(d.parent.parent.name));
-                        });
-
-                    if (supportsForeignObject) {
-                        chart.selectAll(".cell.child")
-                            .filter(function(d) {
-                                return d.parent === self.node; // only get the children for selected group
-                            })
-                            .select(".foreignObject")
-                            .style("display", "");
-                    } else {
-                        chart.selectAll(".cell.child")
-                            .filter(function(d) {
-                                return d.parent === self.node; // only get the children for selected group
-                            })
-                            .select(".foreignObject .labelbody .label")
-                            .style("display", "");
-                    }
-                }
-            });
+            }); 
 
         zoomTransition.select(".foreignObject")
             .attr("width", function(d) {
@@ -622,7 +388,10 @@
             .select(".labelbody .label")
             .text(function(d) {
                 return d.name;
-            });
+            }); 
+
+        d3.selectAll(".label").on("click",function(d){window.open(d.writeup);});
+
 
         // update the width/height of the rects
         zoomTransition.select("rect")
@@ -643,7 +412,6 @@
         }
     }
 
-    // $('div.label').hyphenate('en-us');
 </script>
 </body>
 

@@ -103,7 +103,7 @@
                  "children":[
                         {"name":"Cultural, Linguistic & Biological Diversity",
                          "quote":"Social justice on campus requires working toward inclusive excellence in all aspects of university.",
-                         "author":"Marc J. Weissburg",
+                         "author":"Weissburg, Marc J",
                          "school":"School of Biology",
                          "author2":"Juan Carlos Rodriguez",
                          "school2":"School of Modern Languages",
@@ -118,7 +118,7 @@
                          "quote":"One does not automatically connect climate change with concerns about equity and social justice.  However, when one begins to think about the global and long-term dimensions of climate change as well as the asymmetry of benefits and costs of climate mitigation actions spatially and temporally, the connections become obvious."},
                         {"name":"Environmental Justice"},
                         {"name":"Interconnectedness",
-                         "author":"Marc J. Weissburg",
+                         "author":"Marc J Weissburg",
                          "school":"School of Biology",
                          "quote":"'Interconnectedness' in ecology generally has to do with the network structure that describes how different species interact."}
                     ]
@@ -219,12 +219,11 @@
                         {"name":"Scientific Method", 
                          "quote":"In the sciences, discovery is often preceded by a line of inquiry known as the scientific method. This includes observation, hypothesis generation, experimental design, data analysis and hypothesis acceptance or rejection. Community members often observe problems that they hope research can help address, thereby participating in the scientific method by introducing the problem.",
                          "author":"Jennifer Leavey",
-                         "author2":"Marc J. Weissburg",
+                         "author2":"Marc Weissburg",
                          "author3":"Bryan Norton",
                          "school":"College of Sciences",
                          "school2":"School of Biology",
                          "school3":"School of Public Policy",
-                         "writeup":"#",
                          "margintop":"60px"}
                      ]
                     },
